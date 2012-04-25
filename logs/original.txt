@@ -1,0 +1,250 @@
+found 11 alerts in /var/log/audit/audit.log
+--------------------------------------------------------------------------------
+
+SELinux is preventing /usr/sbin/named from write access on the directory /var/named.
+
+*****  Plugin catchall_boolean (89.3 confidence) suggests  *******************
+
+If you want to allow BIND to write the master zone files. Generally this is used for dynamic DNS or zone transfers.
+Then you must tell SELinux about this by enabling the 'named_write_master_zones' boolean.
+Do
+setsebool -P named_write_master_zones 1
+
+*****  Plugin catchall (11.6 confidence) suggests  ***************************
+
+If you believe that named should be allowed write access on the named directory by default.
+Then you should report this as a bug.
+You can generate a local policy module to allow this access.
+Do
+allow this access for now by executing:
+# grep named /var/log/audit/audit.log | audit2allow -M mypol
+# semodule -i mypol.pp
+
+
+--------------------------------------------------------------------------------
+
+SELinux is preventing /usr/sbin/exim from getattr access on the file /usr/local/cpanel/bin/boxtrapper.
+
+*****  Plugin catchall (100. confidence) suggests  ***************************
+
+If you believe that exim should be allowed getattr access on the boxtrapper file by default.
+Then you should report this as a bug.
+You can generate a local policy module to allow this access.
+Do
+allow this access for now by executing:
+# grep exim /var/log/audit/audit.log | audit2allow -M mypol
+# semodule -i mypol.pp
+
+
+--------------------------------------------------------------------------------
+
+SELinux is preventing /usr/sbin/dovecot from read access on the file dovecot.crt.
+
+*****  Plugin catchall_labels (83.8 confidence) suggests  ********************
+
+If you want to allow dovecot to have read access on the dovecot.crt file
+Then you need to change the label on dovecot.crt
+Do
+# semanage fcontext -a -t FILE_TYPE 'dovecot.crt'
+where FILE_TYPE is one of the following: krb5_conf_t, afs_cache_t, abrt_helper_exec_t, dovecot_etc_t, udev_tbl_t, dovecot_exec_t, ld_so_t, dovecot_t, fail2ban_var_lib_t, textrel_shlib_t, user_home_t, configfile, rpm_script_tmp_t, dovecot_cert_t, user_cron_spool_t, samba_var_t, ld_so_cache_t, net_conf_t, cert_type, etc_runtime_t, anon_inodefs_t, sysctl_kernel_t, dovecot_spool_t, dovecot_var_log_t, dovecot_auth_exec_t, abrt_var_run_t, bin_t, dovecot_var_lib_t, dovecot_var_run_t, puppet_tmp_t, sysctl_crypto_t, dovecot_keytab_t, mail_spool_t, sssd_public_t, locale_t, etc_t, proc_t, sysfs_t, abrt_t, krb5_keytab_t, dovecot_tmp_t, lib_t, root_t, nfs_t. 
+Then execute: 
+restorecon -v 'dovecot.crt'
+
+
+*****  Plugin catchall (17.1 confidence) suggests  ***************************
+
+If you believe that dovecot should be allowed read access on the dovecot.crt file by default.
+Then you should report this as a bug.
+You can generate a local policy module to allow this access.
+Do
+allow this access for now by executing:
+# grep dovecot /var/log/audit/audit.log | audit2allow -M mypol
+# semodule -i mypol.pp
+
+
+--------------------------------------------------------------------------------
+
+SELinux is preventing /usr/libexec/dovecot/pop3-login from open access on the file dovecot.crt.
+
+*****  Plugin catchall_labels (83.8 confidence) suggests  ********************
+
+If you want to allow pop3-login to have open access on the dovecot.crt file
+Then you need to change the label on dovecot.crt
+Do
+# semanage fcontext -a -t FILE_TYPE 'dovecot.crt'
+where FILE_TYPE is one of the following: krb5_conf_t, abrt_helper_exec_t, dovecot_etc_t, udev_tbl_t, dovecot_exec_t, ld_so_t, dovecot_t, fail2ban_var_lib_t, textrel_shlib_t, user_home_t, configfile, rpm_script_tmp_t, dovecot_cert_t, rpm_tmp_t, samba_var_t, ld_so_cache_t, net_conf_t, abrt_var_cache_t, cert_type, etc_runtime_t, anon_inodefs_t, sysctl_kernel_t, logfile, dovecot_spool_t, dovecot_var_log_t, dovecot_auth_exec_t, abrt_var_run_t, bin_t, dovecot_var_lib_t, dovecot_var_run_t, sysctl_crypto_t, dovecot_keytab_t, mail_spool_t, sssd_public_t, locale_t, etc_t, proc_t, sysfs_t, abrt_t, krb5_keytab_t, dovecot_tmp_t, lib_t, root_t, nfs_t. 
+Then execute: 
+restorecon -v 'dovecot.crt'
+
+
+*****  Plugin catchall (17.1 confidence) suggests  ***************************
+
+If you believe that pop3-login should be allowed open access on the dovecot.crt file by default.
+Then you should report this as a bug.
+You can generate a local policy module to allow this access.
+Do
+allow this access for now by executing:
+# grep pop3-login /var/log/audit/audit.log | audit2allow -M mypol
+# semodule -i mypol.pp
+
+
+--------------------------------------------------------------------------------
+
+SELinux is preventing /usr/libexec/dovecot/pop3-login from getattr access on the file /var/cpanel/ssl/dovecot/dovecot.crt.
+
+*****  Plugin catchall_labels (83.8 confidence) suggests  ********************
+
+If you want to allow pop3-login to have getattr access on the dovecot.crt file
+Then you need to change the label on /var/cpanel/ssl/dovecot/dovecot.crt
+Do
+# semanage fcontext -a -t FILE_TYPE '/var/cpanel/ssl/dovecot/dovecot.crt'
+where FILE_TYPE is one of the following: krb5_conf_t, abrt_helper_exec_t, dovecot_etc_t, udev_tbl_t, dovecot_exec_t, ld_so_t, dovecot_t, fail2ban_var_lib_t, textrel_shlib_t, user_home_t, configfile, rpm_script_tmp_t, dovecot_cert_t, user_cron_spool_t, rpm_tmp_t, samba_var_t, initrc_var_run_t, ld_so_cache_t, net_conf_t, abrt_var_cache_t, cert_type, etc_runtime_t, anon_inodefs_t, sysctl_kernel_t, logfile, dovecot_spool_t, user_tmp_t, dovecot_var_log_t, dovecot_auth_exec_t, abrt_var_run_t, bin_t, dovecot_var_lib_t, dovecot_var_run_t, puppet_tmp_t, sysctl_crypto_t, user_home_t, dovecot_keytab_t, mail_spool_t, sssd_public_t, locale_t, etc_t, proc_t, sysfs_t, abrt_t, krb5_keytab_t, dovecot_tmp_t, lib_t, root_t, krb5_host_rcache_t, nfs_t. 
+Then execute: 
+restorecon -v '/var/cpanel/ssl/dovecot/dovecot.crt'
+
+
+*****  Plugin catchall (17.1 confidence) suggests  ***************************
+
+If you believe that pop3-login should be allowed getattr access on the dovecot.crt file by default.
+Then you should report this as a bug.
+You can generate a local policy module to allow this access.
+Do
+allow this access for now by executing:
+# grep pop3-login /var/log/audit/audit.log | audit2allow -M mypol
+# semodule -i mypol.pp
+
+
+--------------------------------------------------------------------------------
+
+SELinux is preventing /usr/local/cpanel/bin/dovecot-auth from execute access on the file /usr/local/cpanel/bin/dovecot-auth.
+
+*****  Plugin catchall (100. confidence) suggests  ***************************
+
+If you believe that dovecot-auth should be allowed execute access on the dovecot-auth file by default.
+Then you should report this as a bug.
+You can generate a local policy module to allow this access.
+Do
+allow this access for now by executing:
+# grep dovecot-auth /var/log/audit/audit.log | audit2allow -M mypol
+# semodule -i mypol.pp
+
+
+--------------------------------------------------------------------------------
+
+SELinux is preventing /usr/local/cpanel/bin/dovecot-auth from getattr access on the file /var/cpanel/hulkd/enabled.
+
+*****  Plugin catchall_labels (83.8 confidence) suggests  ********************
+
+If you want to allow dovecot-auth to have getattr access on the enabled file
+Then you need to change the label on /var/cpanel/hulkd/enabled
+Do
+# semanage fcontext -a -t FILE_TYPE '/var/cpanel/hulkd/enabled'
+where FILE_TYPE is one of the following: abrt_helper_exec_t, ld_so_t, dovecot_auth_exec_t, textrel_shlib_t, rpm_script_tmp_t, usr_t, dovecot_passwd_t, sssd_public_t, sysctl_type, locale_t, etc_t, proc_t, rpm_tmp_t, krb5_keytab_t, ld_so_cache_t, user_tmp_t, krb5_conf_t, abrt_var_cache_t, dovecot_etc_t, mysqld_etc_t, dovecot_auth_tmp_t, var_lib_t, updpwd_exec_t, configfile, dovecot_auth_t, abrt_var_run_t, faillog_t, chkpwd_exec_t, samba_var_t, sysctl_crypto_t, initrc_var_run_t, net_conf_t, cert_type, etc_runtime_t, abrt_t, openct_var_run_t, lib_t, pcscd_var_run_t, krb5_host_rcache_t. 
+Then execute: 
+restorecon -v '/var/cpanel/hulkd/enabled'
+
+
+*****  Plugin catchall (17.1 confidence) suggests  ***************************
+
+If you believe that dovecot-auth should be allowed getattr access on the enabled file by default.
+Then you should report this as a bug.
+You can generate a local policy module to allow this access.
+Do
+allow this access for now by executing:
+# grep dovecot-auth /var/log/audit/audit.log | audit2allow -M mypol
+# semodule -i mypol.pp
+
+
+--------------------------------------------------------------------------------
+
+SELinux is preventing /usr/sbin/sshd from getattr access on the file /var/cpanel/hulkd/enabled.
+
+*****  Plugin catchall_labels (83.8 confidence) suggests  ********************
+
+If you want to allow sshd to have getattr access on the enabled file
+Then you need to change the label on /var/cpanel/hulkd/enabled
+Do
+# semanage fcontext -a -t FILE_TYPE '/var/cpanel/hulkd/enabled'
+where FILE_TYPE is one of the following: faillog_t, abrt_helper_exec_t, lastlog_t, proc_net_t, rssh_ro_t, ld_so_t, chkpwd_exec_t, samba_var_t, fail2ban_var_lib_t, initrc_var_run_t, textrel_shlib_t, pam_var_run_t, net_conf_t, rpm_script_tmp_t, cert_type, etc_runtime_t, condor_var_lib_t, sysctl_kernel_t, openct_var_run_t, user_cron_spool_t, pcscd_var_run_t, local_login_home_t, sshd_var_run_t, shutdown_exec_t, rpm_tmp_t, gitosis_var_lib_t, sshd_tmpfs_t, ld_so_cache_t, system_dbusd_var_lib_t, abrt_var_cache_t, rlogind_home_t, nx_server_exec_t, bin_t, selinux_config_t, logfile, sshd_t, usr_t, wtmp_t, default_context_t, mail_spool_t, sssd_public_t, sshd_keytab_t, locale_t, var_auth_t, user_tmp_t, etc_t, proc_t, sysfs_t, krb5_keytab_t, abrt_var_run_t, ssh_agent_exec_t, crack_db_t, rssh_exec_t, ssh_home_t, sshd_key_t, user_tmp_t, krb5_conf_t, xauth_exec_t, auth_cache_t, ssh_home_t, puppet_tmp_t, security_t, sysctl_crypto_t, user_home_t, mount_exec_t, shell_exec_t, pam_exec_t, nx_server_home_ssh_t, krb5_home_t, passwd_exec_t, proc_afs_t, abrt_t, oddjob_mkhomedir_exec_t, updpwd_exec_t, dbusd_etc_t, user_home_t, lib_t, configfile, sshd_exec_t, domain, fusermount_exec_t, file_context_t, shell_exec_t, root_t, krb5_host_rcache_t, nfs_t, security_t. 
+Then execute: 
+restorecon -v '/var/cpanel/hulkd/enabled'
+
+
+*****  Plugin catchall (17.1 confidence) suggests  ***************************
+
+If you believe that sshd should be allowed getattr access on the enabled file by default.
+Then you should report this as a bug.
+You can generate a local policy module to allow this access.
+Do
+allow this access for now by executing:
+# grep sshd /var/log/audit/audit.log | audit2allow -M mypol
+# semodule -i mypol.pp
+
+
+--------------------------------------------------------------------------------
+
+SELinux is preventing /usr/sbin/sshd from read access on the file pam.
+
+*****  Plugin catchall_labels (83.8 confidence) suggests  ********************
+
+If you want to allow sshd to have read access on the pam file
+Then you need to change the label on pam
+Do
+# semanage fcontext -a -t FILE_TYPE 'pam'
+where FILE_TYPE is one of the following: faillog_t, afs_cache_t, abrt_helper_exec_t, lastlog_t, proc_net_t, rssh_ro_t, ld_so_t, chkpwd_exec_t, samba_var_t, fail2ban_var_lib_t, initrc_var_run_t, textrel_shlib_t, pam_var_run_t, net_conf_t, rpm_script_tmp_t, cert_type, etc_runtime_t, condor_var_lib_t, sysctl_kernel_t, openct_var_run_t, user_cron_spool_t, pcscd_var_run_t, sshd_var_run_t, gitosis_var_lib_t, sshd_tmpfs_t, ld_so_cache_t, system_dbusd_var_lib_t, rlogind_home_t, nx_server_exec_t, bin_t, selinux_config_t, sshd_t, usr_t, wtmp_t, default_context_t, sssd_public_t, sshd_keytab_t, locale_t, var_auth_t, etc_t, proc_t, sysfs_t, krb5_keytab_t, abrt_var_run_t, ssh_agent_exec_t, crack_db_t, rssh_exec_t, ssh_home_t, sshd_key_t, user_tmp_t, krb5_conf_t, xauth_exec_t, auth_cache_t, ssh_home_t, puppet_tmp_t, security_t, sysctl_crypto_t, mount_exec_t, shell_exec_t, pam_exec_t, nx_server_home_ssh_t, krb5_home_t, passwd_exec_t, proc_afs_t, abrt_t, oddjob_mkhomedir_exec_t, updpwd_exec_t, dbusd_etc_t, user_home_t, lib_t, configfile, sshd_exec_t, domain, fusermount_exec_t, file_context_t, shell_exec_t, root_t, krb5_host_rcache_t, nfs_t, security_t. 
+Then execute: 
+restorecon -v 'pam'
+
+
+*****  Plugin catchall (17.1 confidence) suggests  ***************************
+
+If you believe that sshd should be allowed read access on the pam file by default.
+Then you should report this as a bug.
+You can generate a local policy module to allow this access.
+Do
+allow this access for now by executing:
+# grep sshd /var/log/audit/audit.log | audit2allow -M mypol
+# semodule -i mypol.pp
+
+
+--------------------------------------------------------------------------------
+
+SELinux is preventing /usr/local/cpanel/bin/dovecot-auth from read access on the file send.
+
+*****  Plugin catchall_labels (83.8 confidence) suggests  ********************
+
+If you want to allow dovecot-auth to have read access on the send file
+Then you need to change the label on send
+Do
+# semanage fcontext -a -t FILE_TYPE 'send'
+where FILE_TYPE is one of the following: afs_cache_t, abrt_helper_exec_t, ld_so_t, dovecot_auth_exec_t, textrel_shlib_t, rpm_script_tmp_t, usr_t, dovecot_passwd_t, sssd_public_t, sysctl_type, locale_t, etc_t, proc_t, krb5_keytab_t, ld_so_cache_t, user_tmp_t, krb5_conf_t, dovecot_etc_t, mysqld_etc_t, dovecot_auth_tmp_t, var_lib_t, updpwd_exec_t, configfile, dovecot_auth_t, abrt_var_run_t, faillog_t, chkpwd_exec_t, samba_var_t, sysctl_crypto_t, initrc_var_run_t, net_conf_t, cert_type, etc_runtime_t, abrt_t, openct_var_run_t, lib_t, pcscd_var_run_t. 
+Then execute: 
+restorecon -v 'send'
+
+
+*****  Plugin catchall (17.1 confidence) suggests  ***************************
+
+If you believe that dovecot-auth should be allowed read access on the send file by default.
+Then you should report this as a bug.
+You can generate a local policy module to allow this access.
+Do
+allow this access for now by executing:
+# grep dovecot-auth /var/log/audit/audit.log | audit2allow -M mypol
+# semodule -i mypol.pp
+
+
+--------------------------------------------------------------------------------
+
+SELinux is preventing /usr/sbin/sshd from write access on the sock_file cphulkd.sock.
+
+*****  Plugin catchall (100. confidence) suggests  ***************************
+
+If you believe that sshd should be allowed write access on the cphulkd.sock sock_file by default.
+Then you should report this as a bug.
+You can generate a local policy module to allow this access.
+Do
+allow this access for now by executing:
+# grep sshd /var/log/audit/audit.log | audit2allow -M mypol
+# semodule -i mypol.pp
+
+
