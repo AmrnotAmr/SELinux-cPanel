@@ -1,0 +1,38 @@
+This is an open source project to develop SELinux modules for cPanel and it's services in order for SELinux to be compatible with cPanel/WHM installations. This is mainly to prove to cPanel that it can be done and in a fairly feasible fashion.
+
+If you'd like to contribute in any way, we'd love the help!
+
+Here are some recommended tools to get started:
+
+[cPanel's installation guide]
+http://docs.cpanel.net/twiki/bin/view/AllDocumentation/InstallationGuide/
+
+It should be noted that you should not install cPanel on a server that has already been configured. It's highly invasive with it's changes to your server's configuration. My personal configuration was to create a virtual machine with KVM specifically for this project.
+
+The SELinux packages that must be installed are:
+
+	libselinux.x86_64 : SELinux library and simple utilities
+	libselinux-static.x86_64 : Static libraries used to build SELinux
+	libselinux-utils.x86_64 : SELinux libselinux utilies
+	selinux-policy.noarch : SELinux policy configuration
+	selinux-policy-mls.noarch : SELinux mls base policy
+	selinux-policy-targeted.noarch : SELinux targeted base policy
+	checkpolicy.x86_64 : SELinux policy compiler
+	libsemanage.i686 : SELinux binary policy manipulation library
+	libsemanage.x86_64 : SELinux binary policy manipulation library
+	policycoreutils.x86_64 : SELinux policy core utilities
+	policycoreutils-python.x86_64 : SELinux policy core python utilities
+	setools.x86_64 : Policy analysis tools for SELinux
+	setools-console.x86_64 : Policy analysis command-line tools for SELinux
+	setroubleshoot.x86_64 : Helps troubleshoot SELinux problems
+	setroubleshoot-server.x86_64 : SELinux troubleshoot server
+	checkpolicy.x86_64 : SELinux policy compiler
+	policycoreutils.x86_64 : SELinux policy core utilities
+	policycoreutils-python.x86_64 : SELinux policy core python utilities
+
+These packages can get you started on SELinux policy creation, modification, compilation and troubleshooting.
+
+Please feel free to send me a message or make an issue with any inquiries.
+
+Thanks,
+Andrew
