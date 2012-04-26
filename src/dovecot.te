@@ -1,0 +1,17 @@
+
+module dovecot 1.0;
+
+require {
+	type dovecot_auth_t;
+	type dovecot_t;
+	type var_t;
+	type bin_t;
+	class file { getattr read open execute execute_no_trans };
+}
+
+#============= dovecot_auth_t ==============
+allow dovecot_auth_t bin_t:file { read execute open execute_no_trans };
+allow dovecot_auth_t var_t:file { read getattr open };
+
+#============= dovecot_t ==============
+allow dovecot_t var_t:file { read getattr open };
